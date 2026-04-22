@@ -1,0 +1,31 @@
+
+<table border="1" width="100%" id="predictionsTable">
+  <thead>
+    <tr>
+      <th>Match</th>
+      <th>Market</th>
+      <th>Prediction</th>
+      <th>Confidence</th>
+    </tr>
+  </thead>
+  <tbody id="predictionsBody"></tbody>
+</table>
+
+<script>
+async function loadPredictions() {
+  const res = await fetch('/api/predictions');
+  const data = await res.json();
+  const tbody = document.getElementById('predictionsBody');
+  tbody.innerHTML = '';
+  data.forEach(p => {
+    const row = `<tr>
+      <td>${p.match}</td>
+      <td>${p.market}</td>
+      <td>${p.prediction}</td>
+      <td>${p.confidence}%</td>
+    </tr>`;
+    tbody.innerHTML += row;
+  });
+}
+loadPredictions();
+</script>

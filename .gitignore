@@ -1,0 +1,96 @@
+# ========== NODE ==========
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+yarn.lock
+.pnp.*
+.pnp.js
+
+
+node_modules/
+backend/node_modules/
+web/node_modules/
+dist/
+.env
+*.log
+
+node_modules/
+dist/
+.env
+*.log
+
+# ========== BUILDS & OUTPUTS ==========
+dist/
+build/
+out/
+*.tsbuildinfo
+
+# ========== ENVIRONMENT VARIABLES ==========
+.env
+.env.local
+.env.*.local
+.env.production
+.env.development
+
+# ========== BACKEND SPECIFIC ==========
+backend/node_modules/
+backend/.env
+backend/logs/
+backend/uploads/
+backend/temp/
+backend/data/
+
+# ========== FRONTEND SPECIFIC ==========
+frontend/dist/
+frontend/.cache/
+frontend/build/
+frontend/.env
+frontend/.env.local
+
+# ========== LOGS ==========
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# ========== OS / EDITOR FILES ==========
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+*~     
+.idea/
+.vscode/
+*.sublime-*
+.project
+.classpath
+
+# ========== TEST COVERAGE ==========
+coverage/
+.nyc_output/
+
+# ========== TEMP FILES ==========
+*.tmp
+*.temp
+.cache/
+
+# ========== MISC ==========
+*.pid
+*.seed
+*.pid.lock
+*.tgz
+.env*.local
+.prettierrc
+.eslintcache
+
+# ========== SECURITY / SECRETS ==========
+*.pem
+*.key
+*.crt
+.secrets/
+secret/
