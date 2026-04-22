@@ -104,22 +104,22 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-  template: path.resolve(__dirname, "public/index.html"),
-  filename: "index.html",
-  inject: true,
-}),
+      template: path.resolve(__dirname, "public/index.html"),
+      filename: "index.html",
+      inject: true,
+    }),
     new CopyWebpackPlugin({
-  patterns: [
-    {
-      from: path.resolve(__dirname, "public"),
-      to: "",
-      globOptions: {
-        ignore: ["**/index.html"],
-      },
-      noErrorOnMissing: true,
-    },
-  ],
-}),
+      patterns: [
+        {
+          from: path.resolve(__dirname, "public"),
+          to: "",
+          globOptions: {
+            ignore: ["**/index.html"],
+          },
+          noErrorOnMissing: true,
+        },
+      ],
+    }),
     new WorkboxPlugin.GenerateSW({
       clientsClaim: true,
       skipWaiting: true,
@@ -135,12 +135,17 @@ module.exports = {
             expiration: { maxEntries: 50, maxAgeSeconds: 60 * 60 * 24 },
           },
         },
+        // ✅ IMPROVED API CACHING (with network timeout)
         {
           urlPattern: /\/api\//,
           handler: "NetworkFirst",
           options: {
-            cacheName: "custom-api",
-            expiration: { maxEntries: 30, maxAgeSeconds: 5 * 60 },
+            cacheName: "api-cache",
+            networkTimeoutSeconds: 5, // 👈 prevents hanging on slow networks
+            expiration: {
+              maxEntries: 50,
+              maxAgeSeconds: 60 * 10, // 10 minutes
+            },
           },
         },
         {
@@ -158,7 +163,7 @@ module.exports = {
         },
       ],
     }),
-    new webpack.DefinePlugin(envVars), // inject REACT_APP_* environment variables
+    new webpack.DefinePlugin(envVars),
   ],
   devServer: {
     static: { directory: path.resolve(__dirname, "dist"), publicPath: "/" },
